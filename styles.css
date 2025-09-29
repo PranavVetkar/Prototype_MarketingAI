@@ -1,0 +1,95 @@
+body {
+    background: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Background related to Marketing + AI */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1596551842940-d9472e399589?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Ensure text is visible on the dark background */
+}
+
+/* Card Styling for better contrast on background */
+.card {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a modern feel */
+    color: #333;
+}
+
+/* Specific styling for the initial landing card and login card */
+#landingPage .landing-card,
+#loginPage.login-card {
+    max-width: 450px;
+    width: 90%;
+}
+
+/* Task List Styling */
+#taskList .list-group-item {
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#taskList .list-group-item:hover {
+    background-color: #e9ecef;
+    transform: translateX(3px);
+}
+
+#taskDetails {
+    background: #fff;
+    border-radius: 8px;
+    min-height: 300px; /* Give it some vertical space */
+}
+
+#imagePreview {
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* Custom Modal Slide-out from Right (for Update Password) */
+.modal-dialog-slideout-right {
+    transform: translate(100%, 0);
+    transition: transform 0.3s ease-out;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.modal-dialog-slideout-right .modal-content {
+    height: 100%;
+    border-radius: 0;
+    max-width: 400px;
+}
+
+.modal.show .modal-dialog-slideout-right {
+    transform: none;
+}
+
+/* styles.css */
+
+/* ... (rest of your existing styles) ... */
+
+#taskDetails {
+    background: #fff;
+    border-radius: 8px;
+    /* Remove min-height: 300px; if it conflicts, or just keep it */
+}
+
+/* New style for scrollable output boxes */
+.marketing-output-box {
+    max-height: 150px; /* Set a maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    white-space: pre-wrap; /* Ensure text wraps within the box */
+    word-break: break-word; /* Prevents long words from spilling */
+}
+
+/* Style for the pre elements inside the output boxes to preserve line breaks */
+#taskDetails pre {
+    /* Ensure PRE tag respects the scrolling boundaries */
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap; /* Allow line breaks for scripts/emails */
+    word-break: break-word; 
+    border: none;
+}

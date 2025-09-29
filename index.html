@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Marketing & Design AI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/primeflex@latest/primeflex.css" rel="stylesheet">
+    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app" class="container-fluid vh-100 d-flex align-items-center justify-content-center p-0">
+        
+        <div id="landingPage" class="d-flex align-items-center justify-content-center vh-100 text-center">
+            <div class="card p-5 shadow-lg landing-card animate__animated animate__fadeIn">
+                <h1 class="mb-3 text-primary">Creative Marketing & Design AI 🎨✨</h1>
+                <p class="mb-4 text-muted">AI-powered marketing scripts, posters, and taglines tailored for your audience.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-primary btn-lg px-5" onclick="showLoginForm()">Login</button>
+                    <button class="btn btn-success btn-lg px-5" onclick="showRegister()">Signup</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loginPage" class="card p-5 shadow-lg d-none login-card animate__animated animate__fadeIn">
+            <h2 class="text-center mb-4 text-primary">Login to Your Account</h2>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" class="form-control form-control-lg" placeholder="your.email@example.com">
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control form-control-lg" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary w-100 mb-3 btn-lg" onclick="login()">Login</button>
+            <button class="btn btn-link text-secondary w-100" onclick="showUpdatePasswordModal()">Update Password</button>
+            <hr class="my-3">
+            <button class="btn btn-outline-success w-100 btn-lg" onclick="showRegister()">Create a New Account</button>
+        </div>
+
+        <div id="dashboard" class="container py-5 d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3>Your Marketing Tasks History 📋</h3>
+                <button class="btn btn-primary" onclick="showNewTaskModal()">+ New Task</button>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Recent Generations</h5>
+                        <ul id="taskList" class="list-group list-group-flush">
+                            <li class="list-group-item text-center text-muted">No tasks generated yet.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div id="taskDetails" class="card p-4 shadow-lg d-none">
+                        <h4 class="text-primary mb-3">Task Details & Results</h4>
+                        <p class="text-muted">Select a task from the list to see the full details here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updatePasswordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm modal-dialog-slideout-right">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Your Password 🔒</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Enter your details to reset your password.</p>
+                    <div class="mb-3">
+                        <label for="updateEmail" class="form-label">Email Address</label>
+                        <input type="email" id="updateEmail" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Current Password</label>
+                        <input type="password" id="currentPassword" class="form-control" placeholder="Current Password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input type="password" id="newPassword" class="form-control" placeholder="New Password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="updatePassword()">Reset Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="newTaskModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Task 🚀</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="promptInput" class="form-label">Product/Service Prompt (The What)</label>
+                        <textarea id="promptInput" class="form-control" placeholder="E.g., A sustainable bamboo toothbrush brand called 'EcoBrush' that is durable and ships worldwide."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageInput" class="form-label">Product Image (Optional)</label>
+                        <input type="file" id="imageInput" class="form-control" accept="image/*" onchange="previewImage(event)">
+                        <img id="imagePreview" class="img-fluid mt-2 d-none" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="audienceInput" class="form-label">Target Audience (The Who)</label>
+                        <input type="text" id="audienceInput" class="form-control" placeholder="E.g., Eco-conscious millennials, aged 25-35, who are active on Instagram.">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="createTask()">Generate Marketing Content</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+</body>
+</html>
