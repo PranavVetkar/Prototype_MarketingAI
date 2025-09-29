@@ -72,16 +72,19 @@ body {
 #taskDetails {
     background: #fff;
     border-radius: 8px;
+    height: 100%; /* Force it to fill the parent column height */
+    overflow-y: auto; /* Enable vertical scrolling for the card itself */
+    overflow-x: hidden; /* Prevent horizontal spill */
     /* Remove min-height: 300px; if it conflicts, or just keep it */
 }
 
 /* New style for scrollable output boxes */
 .marketing-output-box {
-    max-height: 150px; /* Set a maximum height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    white-space: pre-wrap; /* Ensure text wraps within the box */
-    word-break: break-word; /* Prevents long words from spilling */
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 /* Style for the pre elements inside the output boxes to preserve line breaks */
@@ -92,4 +95,15 @@ body {
     white-space: pre-wrap; /* Allow line breaks for scripts/emails */
     word-break: break-word; 
     border: none;
+}
+
+/* Define the height of the dashboard's main content area */
+#dashboard .row {
+    /* Calculate the height: 100vh - padding - header height */
+    height: calc(100vh - 100px); 
+}
+
+/* Ensure the Task Details column uses the full height */
+#dashboard .col-md-7 {
+    height: 100%;
 }
