@@ -7,14 +7,12 @@ body {
     color: #fff;
 }
 
-/* Card Styling for better contrast on background */
 .card {
     border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a modern feel */
+    background-color: rgba(255, 255, 255, 0.95);
     color: #333;
 }
 
-/* Specific styling for the initial landing card and login card */
 #landingPage .landing-card,
 #loginPage.login-card {
     max-width: 450px;
