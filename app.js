@@ -86,19 +86,11 @@ async function updatePassword() {
     alert("Password update is disabled in demo mode.");
 }
 
-
-// === DASHBOARD & TASK MANAGEMENT (Simplified) ===
-
-// In demo mode, this function is only used to display the very last task generated.
 function renderTasks() {
     const list = document.getElementById("taskList");
-    // Do not clear the list placeholder here, it's done in showDashboard
-    
     if (tasks.length === 0) {
         return; 
     }
-
-    // Only display the most recent task for the demo
     const task = tasks[0];
     const li = document.createElement("li");
     li.className = "list-group-item d-flex justify-content-between align-items-center";
@@ -109,14 +101,10 @@ function renderTasks() {
         </div>
         <span class="badge bg-primary rounded-pill">View</span>
     `;
-    // Clear the existing list and add the new item
     list.innerHTML = '';
     list.appendChild(li);
     li.onclick = () => showTaskDetails(task.id);
 }
-
-// Note: task.output now has video_script, poster_content, email_content
-// app.js (The Corrected showTaskDetails function)
 
 function showTaskDetails(taskId) {
     const task = tasks.find(t => t.id === taskId); 
@@ -172,9 +160,7 @@ function showTaskDetails(taskId) {
     details.classList.remove("d-none");
 }
 
-// === NEW TASK API LOGIC (Fixed to update local state) ===
 function showNewTaskModal() {
-    // Clear previous inputs
     document.getElementById("promptInput").value = "";
     document.getElementById("audienceInput").value = "";
     document.getElementById("imageInput").value = "";
