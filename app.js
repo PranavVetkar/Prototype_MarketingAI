@@ -1,10 +1,9 @@
-// Variable to store the currently logged-in user's unique Firebase ID (UID)
+
 let currentUID = null;
-let tasks = []; // Global tasks array to hold local history for the demo
+let tasks = [];
 
-const API_BASE_URL = "http://127.0.0.1:8000"; // Use the correct FastAPI port
+const API_BASE_URL = "http://127.0.0.1:8000";
 
-// Helper function to show a specific page and hide others
 function showPage(pageId) {
     document.getElementById("landingPage").classList.add("d-none");
     document.getElementById("loginPage").classList.add("d-none");
@@ -13,7 +12,6 @@ function showPage(pageId) {
     const page = document.getElementById(pageId);
     if (page) {
         page.classList.remove("d-none");
-        // Center the login/landing page content
         if (pageId === 'landingPage' || pageId === 'loginPage') {
             document.getElementById("app").classList.remove("container");
             document.getElementById("app").classList.add("d-flex", "align-items-center", "justify-content-center");
@@ -24,7 +22,6 @@ function showPage(pageId) {
     }
 }
 
-// === VIEW TRANSITIONS ===
 function showLandingPage() {
     showPage("landingPage");
 }
@@ -40,16 +37,10 @@ function showLoginForm() {
 async function showDashboard() {
     if (!currentUID) return showLoginForm();
     showPage("dashboard");
-    
-    // DEMO MODE FIX: Clear the list as history is disabled
     const list = document.getElementById("taskList");
     list.innerHTML = '<li class="list-group-item text-center text-muted">History is disabled in demo mode. Only the last generated task is shown.</li>';
-    
-    // Render any existing local tasks (which will only be the last generated one in demo mode)
     renderTasks();
 }
-
-// === AUTHENTICATION API LOGIC ===
 
 async function login() {
     const email = document.getElementById("email").value;
@@ -70,12 +61,11 @@ async function login() {
         const result = await response.json();
 
         if (response.ok && result.success) {
-            currentUID = result.uid; // Store the UID from the demo backend
+            currentUID = result.uid;
             localStorage.setItem("uid", result.uid);
             alert(result.message);
             showDashboard();
         } else {
-            // Display error from the FastAPI backend detail field
             alert("Login Failed: " + (result.detail || "Invalid credentials. Use admin@demo.com / password123."));
         }
     } catch (error) {
@@ -84,7 +74,6 @@ async function login() {
     }
 }
 
-// Disable registration/update password in demo mode
 async function showRegister() {
     alert("Registration is disabled in demo mode. Please log in with admin@demo.com and password123.");
 }
