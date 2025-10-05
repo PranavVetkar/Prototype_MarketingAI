@@ -85,11 +85,9 @@ body {
 }
 
 #dashboard .row {
-    /* Calculate the height: 100vh - padding - header height */
     height: calc(100vh - 100px); 
 }
 
-/* Ensure the Task Details column uses the full height */
 #dashboard .col-md-7 {
     height: 100%;
 }
