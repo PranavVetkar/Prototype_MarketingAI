@@ -19,7 +19,6 @@ body {
     width: 90%;
 }
 
-/* Task List Styling */
 #taskList .list-group-item {
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
@@ -33,7 +32,7 @@ body {
 #taskDetails {
     background: #fff;
     border-radius: 8px;
-    min-height: 300px; /* Give it some vertical space */
+    min-height: 300px;
 }
 
 #imagePreview {
@@ -41,7 +40,6 @@ body {
     object-fit: contain;
 }
 
-/* Custom Modal Slide-out from Right (for Update Password) */
 .modal-dialog-slideout-right {
     transform: translate(100%, 0);
     transition: transform 0.3s ease-out;
