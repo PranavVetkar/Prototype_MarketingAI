@@ -221,22 +221,19 @@ async function createTask() {
 
         if (response.ok && result.success) {
             
-            // --- CRITICAL FIX: Manually construct and store the task ---
             const newTask = {
                 id: result.task_id,
                 prompt: prompt,
                 audience: audience,
                 image_url: imageBase64,
-                output: result.output // Gemini's output
+                output: result.output
             };
-            
-            // In DEMO MODE, replace the whole array with the new task
             tasks = [newTask]; 
             
             alert(result.message);
             
             renderTasks();
-            showTaskDetails(newTask.id); // Display the new task immediately
+            showTaskDetails(newTask.id);
 
         } else {
             alert("Generation Failed: " + (result.detail || "Unknown error. Check console."));
@@ -246,7 +243,6 @@ async function createTask() {
         console.error('Task creation error:', error);
         alert('An error occurred during task generation. Check console.');
     } finally {
-        // Close and reset modal
         const modal = bootstrap.Modal.getInstance(document.getElementById("newTaskModal"));
         modal.hide();
         modalButton.disabled = false;
@@ -254,12 +250,8 @@ async function createTask() {
     }
 }
 
-
-// === INITIALIZATION ===
-// Check localStorage for UID on page load
 window.onload = () => {
     const storedUID = localStorage.getItem("uid");
-    // In demo mode, we only proceed if the stored UID matches the demo UID
     if (storedUID && storedUID === 'DEMO_UID_001') { 
         currentUID = storedUID;
         showDashboard();
